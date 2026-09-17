@@ -1,170 +1,163 @@
 ---
 name: aspice-auditor
-description: Use this skill when auditing or reviewing engineering work products (requirements docs, architecture/design docs, test specs/reports, review records, change requests, plans, baselines) against Automotive SPICE (A-SPICE) 4.1 Capability Level 2 (CL2) — i.e. PA2.1 Performance Management and PA2.2 Work Product Management. Load it before rating any process attribute or judging whether a work product satisfies CL2, and before the aspice-cl2-auditor agent does anything else.
+description: 요구사항 문서, 아키텍처/설계 문서, 시험 명세/보고서, 리뷰 기록, 변경요청, 계획서, 베이스라인 등 엔지니어링 산출물을 Automotive SPICE(A-SPICE) 4.1 CL2(Capability Level 2) — 즉 PA2.1 성과관리와 PA2.2 산출물관리 — 기준으로 감사/검토할 때 사용합니다. 프로세스 속성을 판정하거나 산출물이 CL2를 충족하는지 판단하기 전, 그리고 aspice-cl2-auditor 에이전트가 다른 어떤 작업도 하기 전에 먼저 이 스킬을 로드하세요.
 ---
 
-# A-SPICE 4.1 — CL2 Auditor Reference
+# A-SPICE 4.1 — CL2 감사원 참조 자료
 
-This skill is the reference material for assessing **Capability Level 2** under the
-Automotive SPICE 4.1 Process Assessment Model (PAM). CL2 is reached at a process only
-when both PA2.1 and PA2.2 are rated Largely (L) or Fully (F) achieved, **in addition to**
-PA1.1 Process Performance already being L/F.
+이 스킬은 Automotive SPICE 4.1 프로세스 평가 모델(PAM)에서 **Capability Level 2**를
+평가하기 위한 참조 자료입니다. CL2는 PA1.1 프로세스 수행이 이미 L/F로 판정된
+상태에서, PA2.1과 PA2.2가 **모두** 대부분달성(L) 또는 완전달성(F)으로 판정될 때만
+도달합니다.
 
-Do not assess from memory alone beyond what's below — always tie a rating to a concrete
-artifact (a file, a section, a review record) found in the repository. If no artifact
-exists for an indicator, the rating cannot be higher than P (Partially achieved), and
-usually N (Not achieved) if nothing at all addresses it.
+아래 내용 이상으로 기억에만 의존해 평가하지 마세요 — 등급 판정은 항상 저장소에서
+발견한 구체적 산출물(파일, 항목, 리뷰 기록)에 근거해야 합니다. 어떤 지표에 대해
+증적이 전혀 없다면 등급은 P(부분달성)를 넘을 수 없으며, 아무것도 다루지 않았다면
+보통 N(미달성)입니다.
 
-## Rating scale (per ISO/IEC 33020)
+## 등급 척도 (ISO/IEC 33020 기준)
 
-| Rating | Meaning | Achievement |
+| 등급 | 의미 | 달성률 |
 |---|---|---|
-| N | Not achieved | 0–15% |
-| P | Partially achieved | >15–50% |
-| L | Largely achieved | >50–85% |
-| F | Fully achieved | >85–100% |
+| N | 미달성(Not achieved) | 0~15% |
+| P | 부분달성(Partially achieved) | 15% 초과~50% |
+| L | 대부분달성(Largely achieved) | 50% 초과~85% |
+| F | 완전달성(Fully achieved) | 85% 초과~100% |
 
-CL2 = PA1.1 (L/F) **and** PA2.1 (L/F) **and** PA2.2 (L/F) at that process.
-
----
-
-## PA2.1 Performance Management — generic practices to check for
-
-For the process instance in scope, look for evidence of:
-
-- **GP 2.1.1 — Objectives for performance identified.** A stated goal/scope for this
-  process activity (e.g., in a project plan, quality plan, or process description) —
-  not just "we do requirements elicitation" but what this instance is meant to achieve
-  (scope, quality targets, exit criteria).
-- **GP 2.1.2 — Performance planned and monitored.** A plan (schedule, milestones,
-  effort) for the process activities, and monitoring records (status reports, milestone
-  reviews, metrics/KPIs) showing actual vs. planned.
-- **GP 2.1.3 — Performance adjusted.** Evidence that deviations from the plan were
-  identified and acted on (re-planning, corrective action, escalation) — not just that
-  a plan exists, but that it was actually used to steer the work.
-- **GP 2.1.4 — Responsibilities and authorities defined.** Named roles/owners for the
-  process activities and its work products (RACI, role assignment in a plan, or
-  org/role definitions referenced by the project).
-- **GP 2.1.5 — Resources and infrastructure identified, made available, used and
-  maintained.** Tooling, environments, and staffing needed for the process are
-  identified and actually in place (tool list, environment setup docs, licenses,
-  training records) — not just assumed.
-
-Typical evidence sources: project management plan, quality plan, status/progress
-reports, meeting minutes, tool chain description, risk/issue logs, metrics dashboards.
-
-Common CL2 failure pattern for PA2.1: a plan exists but there is no monitoring record,
-or monitoring exists but no evidence of adjustment when off-track (plan is static/never
-revisited).
+CL2 = 해당 프로세스에서 PA1.1(L/F) **그리고** PA2.1(L/F) **그리고** PA2.2(L/F).
 
 ---
 
-## PA2.2 Work Product Management — generic practices to check for
+## PA2.1 성과관리 — 확인해야 할 일반관행(GP)
 
-For each **output work product** of the process in scope, look for evidence of:
+감사 대상 프로세스 인스턴스에서 다음 증적을 확인합니다:
 
-- **GP 2.2.1 — Requirements for work products identified.** Content/structure
-  requirements are defined (a template, a documented standard, a checklist) before the
-  work product is produced — not invented after the fact.
-- **GP 2.2.2 — Requirements for documentation and control of work products defined.**
-  A defined scheme for identification (naming/IDs), version numbering, and where the
-  work product is stored/controlled (repository, DMS, PLM).
-- **GP 2.2.3 — Work products appropriately identified, documented, and controlled.**
-  The actual work product has a unique ID, version, author, date, and is under
-  configuration/version control (not a loose file with no history).
-- **GP 2.2.4 — Work products reviewed against defined requirements/criteria.** A
-  documented review (peer review, formal review, checklist-based review) with
-  reviewer names, date, findings, and disposition — not just "it was discussed."
-- **GP 2.2.5 — Changes to work products managed / traceability maintained.** Change
-  history is visible (diffs, revision log, change requests linked), and
-  bidirectional traceability to related work products is maintained (e.g.,
-  requirement → design element → test case → test result), including impact
-  analysis when a source item changes.
+- **GP 2.1.1 — 성과 목표 식별.** 이 프로세스 활동에 대한 명시적 목표/범위(예:
+  프로젝트 계획서, 품질 계획서, 프로세스 기술서 내)가 있는가 — "요구사항 도출을
+  한다" 수준이 아니라, 이번 인스턴스가 무엇을 달성해야 하는지(범위, 품질 목표,
+  종료 기준)가 명시되어 있는가.
+- **GP 2.1.2 — 성과 계획 및 모니터링.** 프로세스 활동에 대한 계획(일정, 마일스톤,
+  공수)과, 계획 대비 실적을 보여주는 모니터링 기록(상태 보고, 마일스톤 리뷰,
+  지표/KPI)이 있는가.
+- **GP 2.1.3 — 성과 조정.** 계획 대비 편차를 식별하고 실제로 조치(재계획, 시정
+  조치, 에스컬레이션)한 증적이 있는가 — 계획이 존재하는 것만으로는 부족하며,
+  실제로 작업을 조정하는 데 사용되었는지가 중요.
+- **GP 2.1.4 — 책임과 권한 정의.** 프로세스 활동과 그 산출물에 대한 명시적
+  역할/담당자(RACI, 계획서 내 역할 배정, 프로젝트에서 참조하는 조직/역할 정의)가
+  있는가.
+- **GP 2.1.5 — 자원과 인프라 식별·확보·사용·유지.** 프로세스에 필요한 도구,
+  환경, 인력이 식별되어 실제로 갖춰져 있는가(도구 목록, 환경 구성 문서, 라이선스,
+  교육 기록) — 단순히 있을 것이라 가정하지 않았는가.
 
-Common CL2 failure pattern for PA2.2: the work product itself is fine in content
-(satisfies base practices / PA1.1) but has no visible review record, no version
-history, or a broken/missing traceability link — this caps PA2.2 at P even if the
-content is excellent.
+일반적인 증적 출처: 프로젝트 관리 계획서, 품질 계획서, 상태/진척 보고서, 회의록,
+툴체인 기술서, 위험/이슈 목록, 지표 대시보드.
 
----
-
-## Process-specific work product checklists
-
-Use these as the concrete "what should exist" list per process when checking GP
-2.2.1–2.2.5. Content items are the expected minimum; adapt to project context but
-flag missing items as gaps.
-
-### SYS.2 System Requirements Analysis
-- System requirements specification: unique ID per requirement, source/rationale,
-  verification criteria, priority, status, version/baseline.
-- Bidirectional trace: stakeholder requirement ↔ system requirement.
-- Review record for the requirements specification (criteria: correctness,
-  completeness, consistency, verifiability, feasibility).
-
-### SYS.3 System Architectural Design
-- Architecture description: elements, interfaces, dynamic behavior, allocation of
-  requirements to elements.
-- Trace: system requirement ↔ architectural element.
-- Review record against defined architecture evaluation criteria (e.g., resource
-  usage, testability, modularity).
-
-### SYS.4 System Integration and Integration Test / SYS.5 System Qualification Test
-- Test strategy/spec: test cases linked to requirements, pass/fail criteria,
-  environment/tooling.
-- Test results/report: actual results, defects raised, retest evidence.
-- Trace: requirement ↔ test case ↔ test result.
-
-### SWE.1 Software Requirements Analysis
-- Software requirements spec with unique IDs, verification criteria, version.
-- Trace: system requirement ↔ software requirement.
-- Review record (completeness/consistency/verifiability vs. system requirements).
-
-### SWE.2 Software Architectural Design / SWE.3 Software Detailed Design
-- Design description at each level with interfaces and dynamic behavior.
-- Trace: software requirement ↔ architectural element ↔ detailed design element.
-- Review record against design/coding evaluation criteria.
-
-### SWE.4 Software Unit Verification
-- Unit test spec/cases, static analysis results, coverage results.
-- Trace: detailed design/unit ↔ unit test case.
-- Evidence of defect logging and closure.
-
-### SWE.5 Software Integration and Integration Test / SWE.6 Software Qualification Test
-- Integration test strategy/spec and results, test environment description.
-- Trace: architecture element / software requirement ↔ test case ↔ result.
-- Regression test evidence when a change occurs.
-
-### SUP.1 Quality Assurance
-- QA plan/records, audit reports, non-conformance records with disposition and
-  closure evidence.
-
-### SUP.8 Configuration Management
-- CM plan, baseline records, identification of configuration items, change history,
-  evidence that baselines are protected from unauthorized change.
-
-### SUP.9 Problem Resolution Management
-- Problem records with unique ID, status, priority, root cause, resolution,
-  verification of fix, trace to affected work products.
-
-### SUP.10 Change Request Management
-- Change requests with unique ID, impact analysis, approval/decision record, trace
-  to the work products actually changed, status tracking to closure.
-
-### MAN.3 Project Management
-- Project plan(s) with scope, schedule, resources, risks; progress
-  tracking/monitoring records; evidence of re-planning/corrective action
-  (this doubles as the primary PA2.1 evidence source across the project).
+PA2.1의 흔한 미달성 패턴: 계획은 있지만 모니터링 기록이 없는 경우, 또는
+모니터링은 있지만 계획을 벗어났을 때 조정한 증적이 없는 경우(계획이 정적이며
+한 번도 갱신되지 않음).
 
 ---
 
-## Reporting format
+## PA2.2 산출물관리 — 확인해야 할 일반관행(GP)
 
-Report one row per process assessed:
+감사 대상 프로세스의 각 **출력 산출물**에 대해 다음 증적을 확인합니다:
 
-| Process | PA1.1 (context only) | PA2.1 | PA2.2 | Key gaps | Evidence needed |
+- **GP 2.2.1 — 산출물 요구사항 식별.** 산출물이 만들어지기 전에 내용/구조
+  요구사항(템플릿, 문서화된 표준, 체크리스트)이 정의되어 있는가 — 사후에
+  끼워 맞춘 것이 아닌가.
+- **GP 2.2.2 — 산출물 문서화 및 통제 요구사항 정의.** 식별(명명/ID 체계),
+  버전 번호 부여, 저장/통제 위치(저장소, 문서관리시스템, PLM)에 대한 정의된
+  방식이 있는가.
+- **GP 2.2.3 — 산출물의 적절한 식별·문서화·통제.** 실제 산출물이 고유 ID, 버전,
+  작성자, 날짜를 가지고 있으며 형상/버전관리 하에 있는가(이력 없는 낱개 파일이
+  아닌가).
+- **GP 2.2.4 — 정의된 요구사항/기준에 따른 산출물 리뷰.** 리뷰어 이름, 날짜,
+  발견사항, 처리 결과가 기록된 문서화된 리뷰(동료 검토, 공식 리뷰, 체크리스트
+  기반 리뷰)가 있는가 — "논의했다" 수준이 아닌가.
+- **GP 2.2.5 — 산출물 변경관리/추적성 유지.** 변경 이력이 확인 가능하며(diff,
+  개정 이력, 연결된 변경요청), 관련 산출물 간 양방향 추적성이 유지되는가(예:
+  요구사항 → 설계 요소 → 시험 케이스 → 시험 결과), 원본 항목 변경 시 영향
+  분석이 수행되는가.
+
+PA2.2의 흔한 미달성 패턴: 산출물 내용 자체는 훌륭하고 기본관행/PA1.1을
+충족하지만, 리뷰 기록이 보이지 않거나, 버전 이력이 없거나, 추적성 링크가
+끊기거나 없는 경우 — 이 경우 내용이 우수해도 PA2.2는 P 등급에 머무릅니다.
+
+---
+
+## 프로세스별 산출물 체크리스트
+
+GP 2.2.1~2.2.5를 확인할 때 프로세스별로 "무엇이 존재해야 하는가"에 대한 구체적
+목록으로 사용하세요. 아래 항목은 최소 기대 수준이며, 프로젝트 상황에 맞게
+조정하되 누락된 항목은 갭으로 표시하세요.
+
+### SYS.2 시스템 요구사항 분석
+- 시스템 요구사항 명세서: 요구사항별 고유 ID, 출처/근거, 검증 기준, 우선순위,
+  상태, 버전/베이스라인.
+- 양방향 추적: 이해관계자 요구사항 ↔ 시스템 요구사항.
+- 요구사항 명세서에 대한 리뷰 기록(기준: 정확성, 완전성, 일관성, 검증가능성,
+  실현가능성).
+
+### SYS.3 시스템 아키텍처 설계
+- 아키텍처 기술서: 요소, 인터페이스, 동적 동작, 요구사항의 요소 할당.
+- 추적: 시스템 요구사항 ↔ 아키텍처 요소.
+- 정의된 아키텍처 평가 기준(예: 자원 사용, 시험가능성, 모듈성)에 대한 리뷰 기록.
+
+### SYS.4 시스템 통합 및 통합시험 / SYS.5 시스템 인수시험
+- 시험 전략/명세: 요구사항과 연결된 시험 케이스, 합격/불합격 기준, 환경/도구.
+- 시험 결과/보고서: 실제 결과, 발견된 결함, 재시험 증적.
+- 추적: 요구사항 ↔ 시험 케이스 ↔ 시험 결과.
+
+### SWE.1 소프트웨어 요구사항 분석
+- 고유 ID, 검증 기준, 버전을 가진 소프트웨어 요구사항 명세서.
+- 추적: 시스템 요구사항 ↔ 소프트웨어 요구사항.
+- 리뷰 기록(시스템 요구사항 대비 완전성/일관성/검증가능성).
+
+### SWE.2 소프트웨어 아키텍처 설계 / SWE.3 소프트웨어 상세 설계
+- 각 수준별 설계 기술서(인터페이스와 동적 동작 포함).
+- 추적: 소프트웨어 요구사항 ↔ 아키텍처 요소 ↔ 상세설계 요소.
+- 설계/코딩 평가 기준에 대한 리뷰 기록.
+
+### SWE.4 소프트웨어 단위 검증
+- 단위시험 명세/케이스, 정적분석 결과, 커버리지 결과.
+- 추적: 상세설계/단위 ↔ 단위시험 케이스.
+- 결함 기록 및 종료 증적.
+
+### SWE.5 소프트웨어 통합 및 통합시험 / SWE.6 소프트웨어 인수시험
+- 통합시험 전략/명세와 결과, 시험 환경 기술서.
+- 추적: 아키텍처 요소/소프트웨어 요구사항 ↔ 시험 케이스 ↔ 결과.
+- 변경 발생 시 회귀시험 증적.
+
+### SUP.1 품질보증
+- 품질보증 계획/기록, 감사 보고서, 처리 결과와 종료 증적이 포함된 부적합 기록.
+
+### SUP.8 형상관리
+- 형상관리 계획, 베이스라인 기록, 형상항목 식별, 변경 이력, 베이스라인이
+  무단 변경으로부터 보호된다는 증적.
+
+### SUP.9 문제해결관리
+- 고유 ID, 상태, 우선순위, 근본원인, 해결방안, 수정 검증, 영향받은 산출물과의
+  추적이 포함된 문제 기록.
+
+### SUP.10 변경요청관리
+- 고유 ID, 영향 분석, 승인/결정 기록, 실제 변경된 산출물과의 추적, 종료까지의
+  상태 추적이 포함된 변경요청.
+
+### MAN.3 프로젝트 관리
+- 범위/일정/자원/위험이 포함된 프로젝트 계획서, 진척 추적/모니터링 기록,
+  재계획/시정조치 증적(이는 프로젝트 전반의 주요 PA2.1 증적 출처를 겸함).
+
+---
+
+## 보고 형식
+
+평가한 프로세스별로 한 행씩 보고합니다:
+
+| 프로세스 | PA1.1 (참고용) | PA2.1 | PA2.2 | 주요 갭 | 필요 증적 |
 |---|---|---|---|---|---|
 
-Keep gap descriptions concrete: name the missing artifact or the specific indicator
-(e.g., "no reviewer sign-off found on SRS v1.2" rather than "review process weak").
-If PA1.1 itself is not L/F, say so explicitly and note that CL2 cannot be claimed
-regardless of PA2.1/PA2.2, since CL2 requires PA1.1 as a prerequisite.
+갭 설명은 구체적으로 작성하세요: "리뷰 프로세스가 미흡함" 같은 표현 대신
+"SRS v1.2에 대한 리뷰어 승인 서명을 찾을 수 없음"처럼 누락된 산출물이나
+구체적 지표를 명시하세요. PA1.1 자체가 L/F가 아니라면 이를 명시하고, CL2는
+PA1.1을 전제조건으로 요구하므로 PA2.1/PA2.2와 무관하게 CL2를 주장할 수 없다고
+분명히 밝히세요.
