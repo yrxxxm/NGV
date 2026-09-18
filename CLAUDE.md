@@ -9,7 +9,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 -Python 3.14를이용해서 개발한다.
 - 코드테스트는 unittest를 활용한다.
 - 순환복잡도, 함수라인수 등 측정 지표는 오픈소스 도구를 이용한다. 
-- 구현 단계 수행은 coding 서브에이전트가 담당한다.
+- 구현 단계 수행은 implementer 서브에이전트가 담당한다.
 - TDD 방식으로 진행하고, TDD 스킬을 사용해야 한다. 
 - 다음의 품질 지표를 **반드시** 준수해야 한다.
     - 함수 라인수는 순수코드라인 50라인 이하여야 한다.
@@ -56,5 +56,6 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### 시스템 테스트지침
 
-- 시스템 테스트는 sw-system-tester가 수행한다.
+- 시스템 테스트 케이스 설계(명세)는 sw-system-tester가 담당하고, 그 케이스의
+  자동화 및 수행(실행)은 tester가 담당한다.
 - 테스트 성공률은 100% 여야 한다.
