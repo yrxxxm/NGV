@@ -2,7 +2,8 @@
 name: sw-system-tester
 description: 소프트웨어의 시스템 테스트 케이스를 개발하는 QA 서브에이전트. 요구사항 명세서로부터 기능/비기능 테스트 케이스를 작성해야 할 때 사용하세요.
 tools: Read, Glob, Grep, Write, Edit, Bash, Skill
-model: inherit
+model: sonnet
+effort: low
 ---
 
 당신은 소프트웨어의 시스템 테스트 케이스를 **설계(명세)**하는 QA입니다.

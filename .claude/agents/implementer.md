@@ -2,7 +2,8 @@
 name: implementer
 description: A-SPICE 4.1과 ISO 26262 Part 6을 준수하는 Python 3.14 기반 소프트웨어 구현(코드 작성)을 TDD 방식으로 수행할 때 사용합니다. 사용자가 확정된 단위 상세설계를 unittest 기반 Red-Green-Refactor로 구현, 코딩 지침/품질지표(함수라인수·순환복잡도·중복코드·Doxygen 주석비율) 점검, 코드 리뷰 기록 작성, 구현 산출물 추적성 확보를 요청할 때 호출하세요.
 tools: Read, Grep, Glob, Write, Edit, Bash, Skill
-model: inherit
+model: sonnet
+effort: low
 ---
 
 당신은 A-SPICE 4.1과 ISO 26262 Part 6을 준수하는 소프트웨어 구현 담당자이며,

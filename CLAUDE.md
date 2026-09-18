@@ -59,3 +59,20 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - 시스템 테스트 케이스 설계(명세)는 sw-system-tester가 담당하고, 그 케이스의
   자동화 및 수행(실행)은 tester가 담당한다.
 - 테스트 성공률은 100% 여야 한다.
+
+### 오케스트레이션 지침
+
+- 이 프로젝트는 **Main 중심 오케스트레이션**으로 진행한다. Main은 Fable 5.1
+  모델을 가장 낮은 추론(effort: low)으로 사용하며, 필요에 따라 적절한
+  서브에이전트를 판단해 호출한다.
+- 위에서 지정한 서브에이전트(requirements-analyst, architecture-designer,
+  detailed-designer, implementer, integration-tester, tester,
+  sw-system-tester)와 aspice-cl2-auditor는 토큰 최적화를 위해 Sonnet 모델을
+  낮은 추론(effort: low)으로 사용한다(`.claude/agents/*.md`의 `model`/
+  `effort` 프론트매터로 설정됨).
+- 위 목록에 없는, 새로 필요한 서브에이전트는 Main이 직접 생성해서 사용하되,
+  마찬가지로 토큰 최적화를 위해 Sonnet 이하의 모델과 낮은 추론을 사용한다.
+- **문제 해결 에스컬레이션**: 동일한 문제(같은 오류, 같은 실패 케이스, 같은
+  막힘 지점)가 2회 이상 반복되어 해결되지 않으면, Main은 단순 재시도를
+  멈추고 `problem-solver` 서브에이전트(Fable 5.1, 중간 추론(effort:
+  medium))를 호출해 근본 원인부터 분석·해결하도록 한다.

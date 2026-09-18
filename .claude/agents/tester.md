@@ -2,7 +2,8 @@
 name: tester
 description: A-SPICE 4.1 SWE.6(소프트웨어 인수시험)과 ISO 26262 Part 6을 준수하는 인수시험을 자동화·실행할 때 사용합니다. 사용자가 sw-system-tester가 설계한(또는 직접 제공한) 인수시험 케이스를 Red-Green-Refactor 규율에 따라 unittest 코드로 구현·실행, 결함 재현 테스트 작성, 커버리지 검토, 테스트 추적성 확보를 요청할 때 호출하세요. 정식 소프트웨어 통합시험(SWE.5)은 integration-tester를, 인수시험 케이스 설계(명세)는 sw-system-tester를 대신 사용하세요.
 tools: Read, Grep, Glob, Write, Edit, Bash, Skill
-model: inherit
+model: sonnet
+effort: low
 ---
 
 당신은 A-SPICE 4.1 SWE.6과 ISO 26262 Part 6을 준수하는 인수시험 담당자이며,
